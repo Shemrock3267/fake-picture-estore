@@ -1,13 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 
-const Context = React.createContext();
+const CONTEXT = React.createContext();
 
 function StoreContextProvider({ children }) {
+  const [allPhotos, setAllPhotos] = useState([])
+  const URL = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
+
+  useEffect(() => {
+    async function getImages() {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setAllPhotos(data);
+    }
+    getImages();
+  },[])
+
   return (
-    <Context.Provider value=''>
+    <CONTEXT.Provider value={{allPhotos}}>
       {children}
-    </Context.Provider>
+    </CONTEXT.Provider>
   )
 }
 
-export { StoreContextProvider, Context}
+export { StoreContextProvider, CONTEXT}

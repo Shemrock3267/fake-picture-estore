@@ -6,6 +6,16 @@ function StoreContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([])
   const URL = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
 
+  function toggleFavorite(id) {
+    const updatedPhotos = allPhotos.map(photo => {
+      if (photo.id === id) {
+        return {...photo,isFavorite: !photo.isFavorite}
+      }
+      return photo;
+    })
+    setAllPhotos(updatedPhotos)
+  }
+
   useEffect(() => {
     async function getImages() {
       const response = await fetch(URL);
@@ -16,7 +26,7 @@ function StoreContextProvider({ children }) {
   },[])
 
   return (
-    <CONTEXT.Provider value={{allPhotos}}>
+    <CONTEXT.Provider value={{allPhotos, toggleFavorite}}>
       {children}
     </CONTEXT.Provider>
   )

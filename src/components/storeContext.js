@@ -4,6 +4,7 @@ const CONTEXT = React.createContext();
 
 function StoreContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([])
+  const [cartItems, setCartItems] = useState([])
   const URL = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
 
   function toggleFavorite(id) {
@@ -16,6 +17,12 @@ function StoreContextProvider({ children }) {
     setAllPhotos(updatedPhotos)
   }
 
+  function addImgToCart(newItem) {
+    setCartItems(prevItem => [...prevItem, newItem])
+  }
+
+  console.log(cartItems)
+
   useEffect(() => {
     async function getImages() {
       const response = await fetch(URL);
@@ -26,7 +33,7 @@ function StoreContextProvider({ children }) {
   },[])
 
   return (
-    <CONTEXT.Provider value={{allPhotos, toggleFavorite}}>
+    <CONTEXT.Provider value={{allPhotos, toggleFavorite, addImgToCart, cartItems}}>
       {children}
     </CONTEXT.Provider>
   )

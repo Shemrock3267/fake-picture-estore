@@ -21,7 +21,9 @@ function StoreContextProvider({ children }) {
     setCartItems(prevItem => [...prevItem, newItem])
   }
 
-  console.log(cartItems)
+  function removeFromCart({ id }){
+    setCartItems(prevItems => prevItems.filter(photo => photo.id !== id))
+}
 
   useEffect(() => {
     async function getImages() {
@@ -33,7 +35,7 @@ function StoreContextProvider({ children }) {
   },[])
 
   return (
-    <CONTEXT.Provider value={{allPhotos, toggleFavorite, addImgToCart, cartItems}}>
+    <CONTEXT.Provider value={{allPhotos, cartItems ,toggleFavorite, addImgToCart, removeFromCart}}>
       {children}
     </CONTEXT.Provider>
   )

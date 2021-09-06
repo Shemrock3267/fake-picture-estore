@@ -5,6 +5,7 @@ const CONTEXT = React.createContext();
 function StoreContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([])
   const [cartItems, setCartItems] = useState([])
+  const [buttonText, setButtonText] = useState('Place Order')
   const URL = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
 
   function toggleFavorite(id) {
@@ -23,7 +24,20 @@ function StoreContextProvider({ children }) {
 
   function removeFromCart({ id }){
     setCartItems(prevItems => prevItems.filter(photo => photo.id !== id))
-}
+  }
+
+  function placingOrder(){
+      if(cartItems.length < 1){
+          alert('Add some photos to cart before placing order!')
+      } else {
+          setButtonText('Ordering...')
+          setTimeout(()=>{
+              setButtonText('Order placed')
+              setCartItems([])
+              setTimeout(()=> setButtonText('Place Order'),5000)
+          },3000)
+      }
+  }
 
   useEffect(() => {
     async function getImages() {
@@ -35,7 +49,16 @@ function StoreContextProvider({ children }) {
   },[])
 
   return (
-    <CONTEXT.Provider value={{allPhotos, cartItems ,toggleFavorite, addImgToCart, removeFromCart}}>
+    <CONTEXT.Provider
+      value={{
+        allPhotos,
+        cartItems,
+        buttonText,
+        toggleFavorite,
+        addImgToCart,
+        removeFromCart,
+        placingOrder
+      }}>
       {children}
     </CONTEXT.Provider>
   )

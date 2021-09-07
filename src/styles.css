@@ -34,7 +34,7 @@ main.cart-page {
   font-size: 1.3em;
 }
 
-.cart-page div.order-button {
+.cart-page div.order-button, div.order-notice {
   display: flex;
   justify-content: center;
 }

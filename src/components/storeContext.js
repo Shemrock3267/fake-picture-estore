@@ -6,6 +6,7 @@ function StoreContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([])
   const [cartItems, setCartItems] = useState([])
   const [buttonText, setButtonText] = useState('Place Order')
+  
   const URL = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
 
   function toggleFavorite(id) {

@@ -41,7 +41,7 @@ function Image({ className, img }) {
       ref={trackRef}
       className={`${className} image-container`}
     >
-      <img src={img.url} className="image-grid" />
+      <img src={img.url} className="image-grid" alt=''/>
       {heartIcon()}
       {cartIcon()}
     </div>

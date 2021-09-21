@@ -6,8 +6,8 @@ function StoreContextProvider({ children }) {
   const [allPhotos, setAllPhotos] = useState([])
   const [cartItems, setCartItems] = useState([])
   const [buttonText, setButtonText] = useState('Place Order')
-  
-  const URL = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
+
+  const URL = 'https://api.thedogapi.com/v1/images/search?limit=55&mime_types=png,jpg';
 
   function toggleFavorite(id) {
     const updatedPhotos = allPhotos.map(photo => {
@@ -42,7 +42,11 @@ function StoreContextProvider({ children }) {
 
   useEffect(() => {
     async function getImages() {
-      const response = await fetch(URL);
+      const response = await fetch(URL, {
+        headers: {
+          'x-api-key': '8b01211e-947b-4d18-ab2f-667936de1ff8'
+        }
+      });
       const data = await response.json();
       setAllPhotos(data);
     }

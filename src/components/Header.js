@@ -8,7 +8,7 @@ function Header() {
     return (
         <header>
             <Link to='/'>
-                <h2>Olly Estore</h2>
+                <h2>Olly Doggo Estore</h2>
             </Link>
             <Link to='/cart'>
                 <i className={`ri-shopping-cart-${cartClassName} ri-fw ri-2x`}></i>

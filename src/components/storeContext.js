@@ -7,7 +7,7 @@ function StoreContextProvider({ children }) {
   const [cartItems, setCartItems] = useState([])
   const [buttonText, setButtonText] = useState('Place Order')
 
-  const URL = 'https://api.thedogapi.com/v1/images/search?limit=55&mime_types=png,jpg';
+  const URL = 'https://api.thedogapi.com/v1/images/search?limit=40&mime_types=png,jpg';
 
   function toggleFavorite(id) {
     const updatedPhotos = allPhotos.map(photo => {
